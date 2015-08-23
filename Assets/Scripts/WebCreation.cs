@@ -7,6 +7,7 @@ public class WebCreation : MonoBehaviour {
     Web currentWeb;
     SpiderScale sc;
     SpiderEat se;
+    float timer;
 
 	// Use this for initialization
 	void Start () {
@@ -16,19 +17,37 @@ public class WebCreation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(Input.GetButtonDown("Action"))
+        if(onWeb)
         {
-            if(onWeb)
+            if(Input.GetButtonDown("Action"))
             {
+                
+                timer = 0;
+            }
+            if(Input.GetButton("Action"))
+            {
+                timer += Time.deltaTime;
                 if(currentWeb.isFeed)
                 {
-                    se.Eat(currentWeb.lvl);
-                    currentWeb.isFeed = false;
-                    currentWeb.DestroyWeb();
+                    if(timer >=  currentWeb.timeToMake[currentWeb.lvl])
+                    {
+                        se.Eat(currentWeb.lvl);
+                        currentWeb.Eat();
+                        timer = 0;
+                    }
                 }
-                else if (currentWeb.lvl <= sc.level)
+                else if (sc.level >= currentWeb.lvlRequired[currentWeb.lvl])
                 {
-                    currentWeb.MakeWeb();
+                    if (timer >= currentWeb.timeToMake[currentWeb.lvl])
+                   {
+                        Debug.Log("WebCreation");
+                        currentWeb.MakeWeb();
+                        timer = 0;
+                    }
+                }
+                else
+                {
+                    timer = 0;
                 }
             }
         }
@@ -38,7 +57,6 @@ public class WebCreation : MonoBehaviour {
     {
         if(other.gameObject.tag == "Web")
         {
-
             currentWeb = other.gameObject.GetComponent<Web>();
             onWeb = true;
         }

@@ -12,6 +12,13 @@ public class SpiderScale : MonoBehaviour {
 
     public int level = 0;
 
+    PlayerControl pc;
+
+    void Start()
+    {
+        pc = GetComponent<PlayerControl>();
+    }
+
     public void LevelUp()
     {
         StartCoroutine(SetSizeCoroutine());
@@ -19,6 +26,7 @@ public class SpiderScale : MonoBehaviour {
 
     IEnumerator SetSizeCoroutine()
     {
+        level++;
         float t = 0;
         Vector3 baseScale = transform.localScale;
         Vector3 targetScale = Vector3.one *  sizeByLevel[level];
@@ -31,7 +39,14 @@ public class SpiderScale : MonoBehaviour {
             t += Time.deltaTime;
             yield return 0;
         }
-        level++;
+        if(level>0)
+        {
+            gameObject.GetComponent<SpiderHidding>().isHidding = false;
+        }
+        if(level == 2 || level == 4)
+        {
+            pc.UpSpider();
+        }
     }
 
 }

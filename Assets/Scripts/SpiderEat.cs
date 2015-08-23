@@ -4,6 +4,7 @@ using System.Collections;
 public class SpiderEat : MonoBehaviour {
 
     public int[] valueToNextLevel;
+    public int[] foodValue;
     public int currentFoodValue = 0;
     public float eatTime = 0.5f;
 
@@ -16,11 +17,11 @@ public class SpiderEat : MonoBehaviour {
         pc = GetComponent<PlayerControl>();
 	}
 	
-    public void Eat(int foodValue)
+    public void Eat(int lvl)
     {
         pc.anim.SetTrigger("Eat");
         StartCoroutine(EatCoroutine());
-        currentFoodValue += foodValue;
+        currentFoodValue += foodValue[lvl];
         if(currentFoodValue >= valueToNextLevel[sc.level])
         {
             LevelUp();

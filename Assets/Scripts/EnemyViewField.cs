@@ -43,6 +43,7 @@ public class EnemyViewField : MonoBehaviour {
         Vector3 direction = spider.transform.position - transform.position;
         Debug.DrawRay(transform.position, direction, Color.red);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
+        Debug.Log(hit.collider.gameObject.name);
         if(hit.collider.gameObject.tag == "Player")
         {
             return true;

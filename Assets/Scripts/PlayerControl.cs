@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour {
 
+
+    public bool isDead = false;
     public float moveSpeed = 5f;
     public WallCaptor rightCaptor;
     public WallCaptor leftCaptor;
@@ -24,11 +26,15 @@ public class PlayerControl : MonoBehaviour {
     Rigidbody2D rb;
     public Animator anim;
     private bool canMove = true;
+    SpiderHidding sh;
+    AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
+        sh = GetComponent<SpiderHidding>();
         rb = GetComponent<Rigidbody2D>();
         Web.MakingWebEvent += SetCanMove;
+        audio = GetComponent<AudioSource>();
         UpSpider();
 	}
 	
@@ -85,9 +91,9 @@ public class PlayerControl : MonoBehaviour {
             Move(h, v);
         }
 
-        if(Input.GetKeyDown(KeyCode.L))
+        if(Input.GetButtonDown("Jump"))
         {
-            UpSpider();
+            SetOrientation(HEAD_ORIENTATION.UP);
         }
 
     }
@@ -133,6 +139,14 @@ public class PlayerControl : MonoBehaviour {
                         v = 0;
                     }
                 }
+                if(!audio.isPlaying && h!= 0)
+                {
+                    audio.Play();
+                }
+                else if(h==0)
+                {
+                    audio.Stop();
+                }
                 anim.SetBool("Walk", h!=0);
                 break;
             case HEAD_ORIENTATION.RIGHT:
@@ -171,6 +185,14 @@ public class PlayerControl : MonoBehaviour {
                     {
                         h = 0;
                     }
+                }
+                if (!audio.isPlaying && v != 0)
+                {
+                    audio.Play();
+                }
+                else if (v == 0)
+                {
+                    audio.Stop();
                 }
                 anim.SetBool("Walk", v != 0);
                 break;
@@ -211,6 +233,14 @@ public class PlayerControl : MonoBehaviour {
                         v = 0;
                     }
                 }
+                if (!audio.isPlaying && h != 0)
+                {
+                    audio.Play();
+                }
+                else if (h == 0)
+                {
+                    audio.Stop();
+                }
                 anim.SetBool("Walk", h != 0);
                 break;
             case HEAD_ORIENTATION.LEFT:
@@ -249,6 +279,14 @@ public class PlayerControl : MonoBehaviour {
                     {
                         h = 0;
                     }
+                }
+                if (!audio.isPlaying && v != 0)
+                {
+                    audio.Play();
+                }
+                else if (v == 0)
+                {
+                    audio.Stop();
                 }
                 anim.SetBool("Walk", v != 0);
                 break;
@@ -308,6 +346,20 @@ public class PlayerControl : MonoBehaviour {
         Vector3 theScale = currentSpider.transform.localScale;
         theScale.x *= -1;
         currentSpider.transform.localScale = theScale;
+    }
+
+    public void Die()
+    {
+        sh.isHidding = true;
+        canMove = false;
+        anim.SetTrigger("Die");
+        StartCoroutine(WaitForRestartCoroutine());
+    }
+
+    IEnumerator WaitForRestartCoroutine()
+    {
+        yield return new WaitForSeconds(2);
+        Application.LoadLevel(Application.loadedLevelName);
     }
 }
 

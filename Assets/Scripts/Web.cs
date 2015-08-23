@@ -6,30 +6,27 @@ public class Web : MonoBehaviour {
     public delegate void MakingWeb(bool canMove);
     public static event MakingWeb MakingWebEvent;
 
-    public float timeToMakeLvl1 = 1f;
-    public float timeToMakeLvl2 = 2f;
-    public float timeToMakeLvl3 = 3f;
+    public float[] timeToMake;
 
-    public float timeToFeedLvl1 = 10f;
-    public float timeToFeedLvl2 = 20f;
-    public float timeToFeedLvl3 = 30f;
+    public float[] timeToFill;
 
     public float timeVariation = 0.25f;
 
-    public Animation lvl1;
-    public Animation lvl2;
-    public Animation lvl3;
+    public Animation[] webAnimations;
 
-    public WebShowFood wsf1;
-    public WebShowFood wsf2;
-    public WebShowFood wsf3;
+    public WebShowFood[] webShowFood;
+
+    public int[] lvlRequired;
+
 
     public int lvl = 0;
     public bool isFeed = false;
 
+    AudioSource audio;
+
 	// Use this for initialization
 	void Start () {
-	
+        audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -40,69 +37,47 @@ public class Web : MonoBehaviour {
     public void MakeWeb()
     {
 
-        lvl += 2;
-        if(lvl == 2)
-        {
-            StopCoroutine("FeedWebCoroutine");
-            StartCoroutine(MakeToileCoroutine(timeToMakeLvl1));
-            lvl1.clip = lvl1.GetClip("Appear");
-            lvl1.Play();
-            StartCoroutine(FeedWebCoroutine(timeToFeedLvl1));
-        }
-        else if(lvl == 4)
-        {
-            StopCoroutine("FeedWebCoroutine");
-            StartCoroutine(MakeToileCoroutine(timeToMakeLvl2));
-            lvl1.clip = lvl1.GetClip("Desappear");
-            lvl2.clip = lvl1.GetClip("Appear");
-            lvl1.Play();
-            lvl2.Play();
-            StartCoroutine(FeedWebCoroutine(timeToFeedLvl2));
+        StopAllCoroutines();
 
-        }
-        else  if (lvl == 6)
+        if(lvl>0)
         {
-            StopCoroutine("FeedWebCoroutine");
-            StartCoroutine(MakeToileCoroutine(timeToMakeLvl3));
-            lvl2.clip = lvl1.GetClip("Desappear");
-            lvl3.clip = lvl1.GetClip("Appear");
-            lvl2.Play();
-            lvl3.Play();
-            StartCoroutine(FeedWebCoroutine(timeToFeedLvl3));
+            webAnimations[lvl-1].clip = webAnimations[lvl-1].GetClip("Desappear");
+            webAnimations[lvl-1].Play();
         }
+        webAnimations[lvl].clip = webAnimations[lvl].GetClip("Appear");
+        webAnimations[lvl].Play();
+        StartCoroutine(FeedWebCoroutine(lvl));
+
+        lvl++;
+    }
+
+    public void Eat()
+    {
+        audio.Play();
+        isFeed = false;
+        DestroyWeb();
     }
 
     public void DestroyWeb()
     {
-        wsf1.HideAllBugs();
-        wsf2.HideAllBugs();
-        wsf3.HideAllBugs();
-        lvl -= 2;
-        if (lvl == 0)
+        lvl--;
+        StopAllCoroutines();
+        for (int i = 0; i < webShowFood.Length; i++)
         {
-            StopCoroutine("FeedWebCoroutine");
-            lvl += 2;
-            StartCoroutine(FeedWebCoroutine(timeToFeedLvl1));
+            webShowFood[i].HideAllBugs();
         }
-        else if (lvl == 2)
-        {
-            StopCoroutine("FeedWebCoroutine");
-            lvl1.clip = lvl1.GetClip("Appear");
-            lvl2.clip = lvl2.GetClip("Desappear");
-            lvl1.Play();
-            lvl2.Play();
-            StartCoroutine(FeedWebCoroutine(timeToFeedLvl2));
 
-        }
-        else if (lvl == 4)
+        if (lvl > 0)
         {
-            StopCoroutine("FeedWebCoroutine");
-            lvl2.clip = lvl2.GetClip("Appear");
-            lvl3.clip = lvl3.GetClip("Desappear");
-            lvl2.Play();
-            lvl3.Play();
-            StartCoroutine(FeedWebCoroutine(timeToFeedLvl3));
+            Debug.Log("Appear");
+            webAnimations[lvl - 1].clip = webAnimations[lvl-1].GetClip("Appear");
+            webAnimations[lvl - 1].Play();
+            StartCoroutine(FeedWebCoroutine(lvl));
         }
+        webAnimations[lvl].clip = webAnimations[lvl].GetClip("Desappear");
+        webAnimations[lvl].Play();
+
+
     }
 
     IEnumerator MakeToileCoroutine(float time)
@@ -112,23 +87,19 @@ public class Web : MonoBehaviour {
         MakingWebEvent(true);
     }
 
-    IEnumerator FeedWebCoroutine(float baseTime)
+    IEnumerator FeedWebCoroutine(int buflvl)
     {
-        float variation = baseTime * timeVariation;
-        float time = baseTime + ((Random.value * variation * 2) - variation);
+        float variation = timeToFill[buflvl] * timeVariation;
+        float time = timeToFill[buflvl] + ((Random.value * variation * 2) - variation);
         Debug.Log(time + "  :  " + variation);
         yield return new WaitForSeconds(time);
-        if(lvl == 6)
+        if (buflvl == 3)
         {
-            wsf3.ShowAllBugs();
+            webShowFood[buflvl].ShowAllBugs();
         }
-        else if(lvl == 4)
+        else
         {
-            wsf2.ShowRandomBug();
-        }
-        else if(lvl == 2)
-        {
-            wsf1.ShowRandomBug();
+            webShowFood[buflvl].ShowRandomBug();
         }
         isFeed = true;
     }

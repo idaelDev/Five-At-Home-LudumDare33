@@ -13,8 +13,10 @@ public class Enemy : MonoBehaviour {
     Animator anim;
     Vector3 lastNewPosition;
     EnemyState currentState = EnemyState.NORMAL;
-
+    
     EnemyViewField evf;
+    PlayerControl pc;
+
 
 	// Use this for initialization
 	void Start () 
@@ -23,16 +25,13 @@ public class Enemy : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         anim.SetBool("Walk", true);
+        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
     }
 	
 	// Update is called once per frame
 	void FixedUpdate() 
     {
-        if(evf.seeSpider)
-        {
-            Debug.Log("Attack !!!");
-            currentState = EnemyState.ATTACK;
-        }
+
         switch (currentState)
         {
             case EnemyState.NORMAL:
@@ -48,8 +47,18 @@ public class Enemy : MonoBehaviour {
         }
 	}
 
+    void Update()
+    {
+        if (evf.seeSpider)
+        {
+            Debug.Log("Attack !!!");
+            currentState = EnemyState.ATTACK;
+        }
+    }
+
     void AttackMovement()
     {
+        Debug.Log("Attack Movement");
         if(evf.lastPosition.x - transform.position.x > stopDistance)
         {
             if (!lookRight)
@@ -72,7 +81,11 @@ public class Enemy : MonoBehaviour {
     {
         if(evf.seeSpider)
         {
-            Debug.Log("attacking");
+            Debug.Log("Kill");
+            if(Mathf.Abs(transform.position.x - pc.gameObject.transform.position.x)<= stopDistance)
+            {
+                pc.Die();
+            }
         }
         currentState = EnemyState.NORMAL;
     }
