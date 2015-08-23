@@ -1,0 +1,121 @@
+fileFormatVersion: 2
+guid: 8bd5363433cb3e6448096ea5b372ec18
+timeCreated: 1440325152
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Spider evo2 eat_0
+    21300002: Spider evo2 eat_1
+    21300004: Spider evo2 eat_2
+    21300006: Spider evo2 eat_3
+    21300008: Spider evo2 eat_4
+    21300010: Spider evo2 eat_5
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 350
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Spider evo2 eat_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 253
+        height: 96
+      alignment: 9
+      pivot: {x: .405268669, y: .621627152}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spider evo2 eat_1
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 224
+        width: 237
+        height: 120
+      alignment: 9
+      pivot: {x: .43517527, y: .5256055}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spider evo2 eat_2
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 224
+        width: 237
+        height: 127
+      alignment: 9
+      pivot: {x: .435175002, y: .456449747}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spider evo2 eat_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 276
+        height: 96
+      alignment: 9
+      pivot: {x: .381990671, y: .63443011}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spider evo2 eat_4
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 253
+        height: 96
+      alignment: 9
+      pivot: {x: .410126686, y: .660035908}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spider evo2 eat_5
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 0
+        width: 193
+        height: 112
+      alignment: 9
+      pivot: {x: .541393518, y: .538408399}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
