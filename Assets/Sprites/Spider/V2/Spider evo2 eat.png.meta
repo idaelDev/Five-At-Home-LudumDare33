@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8bd5363433cb3e6448096ea5b372ec18
-timeCreated: 1440325152
+timeCreated: 1440369035
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -63,7 +63,7 @@ TextureImporter:
         width: 253
         height: 96
       alignment: 9
-      pivot: {x: .405268669, y: .621627152}
+      pivot: {x: .405268669, y: .492796898}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Spider evo2 eat_1
       rect:
@@ -73,7 +73,7 @@ TextureImporter:
         width: 237
         height: 120
       alignment: 9
-      pivot: {x: .43517527, y: .5256055}
+      pivot: {x: .405268699, y: .379758209}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Spider evo2 eat_2
       rect:
@@ -83,7 +83,7 @@ TextureImporter:
         width: 237
         height: 127
       alignment: 9
-      pivot: {x: .435175002, y: .456449747}
+      pivot: {x: .405268699, y: .342835665}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Spider evo2 eat_3
       rect:
@@ -93,7 +93,7 @@ TextureImporter:
         width: 276
         height: 96
       alignment: 9
-      pivot: {x: .381990671, y: .63443011}
+      pivot: {x: .405268699, y: .451920539}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Spider evo2 eat_4
       rect:
@@ -103,7 +103,7 @@ TextureImporter:
         width: 253
         height: 96
       alignment: 9
-      pivot: {x: .410126686, y: .660035908}
+      pivot: {x: .405268699, y: .466790468}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Spider evo2 eat_5
       rect:
@@ -113,7 +113,7 @@ TextureImporter:
         width: 193
         height: 112
       alignment: 9
-      pivot: {x: .541393518, y: .538408399}
+      pivot: {x: .405268699, y: .381971627}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

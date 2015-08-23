@@ -96,6 +96,8 @@ public class PlayerControl : MonoBehaviour {
             SetOrientation(HEAD_ORIENTATION.UP);
         }
 
+
+
     }
 
     void Move(float h, float v)
@@ -139,7 +141,7 @@ public class PlayerControl : MonoBehaviour {
                         v = 0;
                     }
                 }
-                if(!audio.isPlaying && h!= 0)
+                if(!audio.isPlaying && h!= 0 && isGrounded)
                 {
                     audio.Play();
                 }
@@ -186,7 +188,7 @@ public class PlayerControl : MonoBehaviour {
                         h = 0;
                     }
                 }
-                if (!audio.isPlaying && v != 0)
+                if (!audio.isPlaying && v != 0 && isGrounded)
                 {
                     audio.Play();
                 }
@@ -233,7 +235,7 @@ public class PlayerControl : MonoBehaviour {
                         v = 0;
                     }
                 }
-                if (!audio.isPlaying && h != 0)
+                if (!audio.isPlaying && h != 0 && isGrounded)
                 {
                     audio.Play();
                 }
@@ -280,7 +282,7 @@ public class PlayerControl : MonoBehaviour {
                         h = 0;
                     }
                 }
-                if (!audio.isPlaying && v != 0)
+                if (!audio.isPlaying && v != 0 && isGrounded)
                 {
                     audio.Play();
                 }
@@ -313,18 +315,22 @@ public class PlayerControl : MonoBehaviour {
         {
             case HEAD_ORIENTATION.UP:
                 transform.rotation = Quaternion.Euler(Vector3.zero);
-                gravityScale = 0;
+                Physics2D.gravity = Vector2.up * -9.81f;
+                gravityScale = 1;
                 break;
             case HEAD_ORIENTATION.RIGHT:
                 transform.rotation = Quaternion.Euler(Vector3.forward * -90);
+                Physics2D.gravity = Vector2.up * -9.81f;
                 gravityScale = 0;
                 break;
             case HEAD_ORIENTATION.DOWN:
                 transform.rotation = Quaternion.Euler(Vector3.forward * 180);
-                gravityScale = 0;
+                Physics2D.gravity = Vector2.up * 9.81f;
+                gravityScale = 1;
                 break;
             case HEAD_ORIENTATION.LEFT:
                 transform.rotation = Quaternion.Euler(Vector3.forward * 90);
+                Physics2D.gravity = Vector2.up * -9.81f;
                 gravityScale = 0;
                 break;
             default:

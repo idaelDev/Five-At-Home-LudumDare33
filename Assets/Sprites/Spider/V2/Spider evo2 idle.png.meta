@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3c98be5c89f0ac94ea440d0d7f0726de
-timeCreated: 1440327584
+timeCreated: 1440368911
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -59,7 +59,7 @@ TextureImporter:
         width: 253
         height: 96
       alignment: 9
-      pivot: {x: .410457194, y: .617991149}
+      pivot: {x: .413655192, y: .457860142}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Spider evo2 idle_1
       rect:
@@ -69,7 +69,7 @@ TextureImporter:
         width: 253
         height: 92
       alignment: 9
-      pivot: {x: .407259375, y: .61799109}
+      pivot: {x: .416853458, y: .450897932}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

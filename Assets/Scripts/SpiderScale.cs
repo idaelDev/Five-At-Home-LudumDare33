@@ -19,6 +19,14 @@ public class SpiderScale : MonoBehaviour {
         pc = GetComponent<PlayerControl>();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LevelUp();
+        }
+    }
+
     public void LevelUp()
     {
         StartCoroutine(SetSizeCoroutine());

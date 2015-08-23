@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: cc8879a03604e334e9fb2fa3160fb233
-timeCreated: 1440325173
+timeCreated: 1440369137
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -60,8 +60,8 @@ TextureImporter:
         y: 222
         width: 253
         height: 96
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .503960431, y: .345848709}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Spider evo2 die_1
       rect:
@@ -70,8 +70,8 @@ TextureImporter:
         y: 221
         width: 253
         height: 88
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .50792104, y: .345848709}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Spider evo2 die_2
       rect:
@@ -80,8 +80,8 @@ TextureImporter:
         y: 222
         width: 249
         height: 96
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .345848709}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Spider evo2 die_3
       rect:
@@ -90,8 +90,8 @@ TextureImporter:
         y: 0
         width: 181
         height: 91
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .483392656, y: .34584868}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

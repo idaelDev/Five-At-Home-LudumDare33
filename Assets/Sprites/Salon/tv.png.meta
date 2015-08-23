@@ -1,12 +1,9 @@
 fileFormatVersion: 2
-guid: cd230fc54ac5d034bb20b9999543d9b7
-timeCreated: 1440368369
+guid: 02f584f3020117d4e8d04f98126973e6
+timeCreated: 1440365133
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: spider_0
-    21300002: spider_1
-    21300004: spider_2
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -40,48 +37,18 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 350
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: spider_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 260
-        height: 84
-      alignment: 9
-      pivot: {x: .455441386, y: .532873571}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: spider_1
-      rect:
-        serializedVersion: 2
-        x: 387
-        y: 0
-        width: 210
-        height: 83
-      alignment: 9
-      pivot: {x: .426337689, y: .527130187}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: spider_2
-      rect:
-        serializedVersion: 2
-        x: 722
-        y: 1
-        width: 258
-        height: 86
-      alignment: 9
-      pivot: {x: .467764288, y: .549310625}
-      border: {x: 0, y: 0, z: 0, w: 0}
+    sprites: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

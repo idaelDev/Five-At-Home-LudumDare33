@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ae4bea378b5078941b596e77ac141250
-timeCreated: 1440318657
+timeCreated: 1440368937
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -60,7 +60,7 @@ TextureImporter:
         width: 314
         height: 110
       alignment: 9
-      pivot: {x: .449286193, y: .552276075}
+      pivot: {x: .444561064, y: .383675456}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Spider evo2 walk_1
       rect:
@@ -70,7 +70,7 @@ TextureImporter:
         width: 253
         height: 96
       alignment: 9
-      pivot: {x: .412581742, y: .624407113}
+      pivot: {x: .415514082, y: .431219101}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Spider evo2 walk_2
       rect:
@@ -80,7 +80,7 @@ TextureImporter:
         width: 312
         height: 108
       alignment: 9
-      pivot: {x: .467391819, y: .581914127}
+      pivot: {x: .46501413, y: .396453589}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
