@@ -26,6 +26,12 @@ public class Enemy : MonoBehaviour {
         anim = GetComponent<Animator>();
         anim.SetBool("Walk", true);
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+        evf.SeeSpiderEvent += AttackingState;
+    }
+
+    void AttackingState()
+    {
+        currentState = EnemyState.ATTACK;
     }
 	
 	// Update is called once per frame
@@ -49,11 +55,11 @@ public class Enemy : MonoBehaviour {
 
     void Update()
     {
-        if (evf.seeSpider)
-        {
-            Debug.Log("Attack !!!");
-            currentState = EnemyState.ATTACK;
-        }
+        //if (evf.seeSpider)
+        //{
+        //    Debug.Log("Attack !!!");
+        //    currentState = EnemyState.ATTACK;
+        //}
     }
 
     void AttackMovement()

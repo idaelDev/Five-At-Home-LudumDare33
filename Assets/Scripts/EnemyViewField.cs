@@ -6,6 +6,9 @@ public class EnemyViewField : MonoBehaviour {
     public bool seeSpider;
     public Vector3 lastPosition;
 
+    public delegate void SeeSpider();
+    public event SeeSpider SeeSpiderEvent;
+
 	void OnTriggerStay2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player")
@@ -14,8 +17,10 @@ public class EnemyViewField : MonoBehaviour {
             {
                 if (CheckOcclusion(other.gameObject))
                 {
+                    Debug.Log("Seeee");
                     seeSpider = true;
                     lastPosition = other.gameObject.transform.position;
+                    SeeSpiderEvent();
                 }
                 else
                 {
@@ -43,7 +48,7 @@ public class EnemyViewField : MonoBehaviour {
         Vector3 direction = spider.transform.position - transform.position;
         Debug.DrawRay(transform.position, direction, Color.red);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
-        Debug.Log(hit.collider.gameObject.name);
+        //Debug.Log(hit.collider.gameObject.name);
         if(hit.collider.gameObject.tag == "Player")
         {
             return true;

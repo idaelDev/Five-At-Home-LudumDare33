@@ -40,7 +40,6 @@ public class WebCreation : MonoBehaviour {
                 {
                     if (timer >= currentWeb.timeToMake[currentWeb.lvl])
                    {
-                        Debug.Log("WebCreation");
                         currentWeb.MakeWeb();
                         timer = 0;
                     }
