@@ -17,29 +17,28 @@ public class EnemyViewField : MonoBehaviour {
             {
                 if (CheckOcclusion(other.gameObject))
                 {
-                    Debug.Log("Seeee");
+                    Debug.Log("See");
                     seeSpider = true;
                     lastPosition = other.gameObject.transform.position;
                     SeeSpiderEvent();
                 }
                 else
                 {
+                    Debug.Log("Un See");
                     seeSpider = false;
                 }
             }
             else
             {
+                Debug.Log("Un See");
                 seeSpider = false;
             }
-        }
-        else
-        {
-            seeSpider = false;
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log("Un See");
         seeSpider = false;
     }
 

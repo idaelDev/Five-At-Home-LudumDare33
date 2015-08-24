@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class WebCreation : MonoBehaviour {
 
-    bool onWeb = false;
+    public bool onWeb = false;
     Web currentWeb;
     SpiderScale sc;
     SpiderEat se;
     float timer;
+    public Slider slider;
 
 	// Use this for initialization
 	void Start () {
         sc = GetComponent<SpiderScale>();
         se = GetComponent<SpiderEat>();
+        slider.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -21,7 +24,7 @@ public class WebCreation : MonoBehaviour {
         {
             if(Input.GetButtonDown("Action"))
             {
-                
+                slider.gameObject.SetActive(true);
                 timer = 0;
             }
             if(Input.GetButton("Action"))
@@ -29,7 +32,9 @@ public class WebCreation : MonoBehaviour {
                 timer += Time.deltaTime;
                 if(currentWeb.isFeed)
                 {
-                    if(timer >=  currentWeb.timeToMake[currentWeb.lvl])
+                    slider.maxValue = currentWeb.timeToMake[currentWeb.lvl]/2f;
+                    slider.value = timer;
+                    if(timer >=  currentWeb.timeToMake[currentWeb.lvl]/2f)
                     {
                         se.Eat(currentWeb.lvl);
                         currentWeb.Eat();
@@ -38,6 +43,8 @@ public class WebCreation : MonoBehaviour {
                 }
                 else if (sc.level >= currentWeb.lvlRequired[currentWeb.lvl])
                 {
+                    slider.maxValue = currentWeb.timeToMake[currentWeb.lvl];
+                    slider.value = timer;
                     if (timer >= currentWeb.timeToMake[currentWeb.lvl])
                    {
                         currentWeb.MakeWeb();
@@ -47,7 +54,13 @@ public class WebCreation : MonoBehaviour {
                 else
                 {
                     timer = 0;
+                    slider.gameObject.SetActive(false);
                 }
+            }
+            if(Input.GetButtonUp("Action"))
+            {
+                timer = 0;
+                slider.gameObject.SetActive(false);
             }
         }
 	}

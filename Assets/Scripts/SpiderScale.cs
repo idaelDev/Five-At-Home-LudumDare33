@@ -55,6 +55,16 @@ public class SpiderScale : MonoBehaviour {
         {
             pc.UpSpider();
         }
+        if(level == 4)
+        {
+            gameObject.layer = 10;
+            Collider2D[] g = GetComponentsInChildren<Collider2D>();
+            for (int i = 0; i < g.Length; i++)
+            {
+                g[i].gameObject.layer = 10;
+            }
+            pc.isGIant = true;
+        }
     }
 
 }

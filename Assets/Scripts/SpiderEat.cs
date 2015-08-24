@@ -10,16 +10,19 @@ public class SpiderEat : MonoBehaviour {
 
     private SpiderScale sc;
     private PlayerControl pc;
+    SoundSpiderManager audio;
 
 	// Use this for initialization
 	void Start () {
         sc = GetComponent<SpiderScale>();
         pc = GetComponent<PlayerControl>();
+        audio = GetComponent<SoundSpiderManager>();
 	}
 	
     public void Eat(int lvl)
     {
         pc.anim.SetTrigger("Eat");
+        audio.PlayEat();
         StartCoroutine(EatCoroutine());
         currentFoodValue += foodValue[lvl];
         if(currentFoodValue >= valueToNextLevel[sc.level])

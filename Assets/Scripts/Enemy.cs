@@ -17,10 +17,12 @@ public class Enemy : MonoBehaviour {
     EnemyViewField evf;
     PlayerControl pc;
 
+    SoundEnemySound audio;
 
 	// Use this for initialization
 	void Start () 
     {
+        audio = GetComponent<SoundEnemySound>();
         evf = GetComponentInChildren<EnemyViewField>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -32,6 +34,7 @@ public class Enemy : MonoBehaviour {
     void AttackingState()
     {
         currentState = EnemyState.ATTACK;
+        audio.PlayDetection();
     }
 	
 	// Update is called once per frame
@@ -64,7 +67,6 @@ public class Enemy : MonoBehaviour {
 
     void AttackMovement()
     {
-        Debug.Log("Attack Movement");
         if(evf.lastPosition.x - transform.position.x > stopDistance)
         {
             if (!lookRight)
@@ -79,7 +81,8 @@ public class Enemy : MonoBehaviour {
         }
         else
         {
-            Attack();
+            rb.velocity = new Vector2(0, 0);
+            anim.SetTrigger("Attack");
         }
     }
 
@@ -87,7 +90,7 @@ public class Enemy : MonoBehaviour {
     {
         if(evf.seeSpider)
         {
-            Debug.Log("Kill");
+            Debug.Log(Mathf.Abs(transform.position.x - pc.gameObject.transform.position.x));
             if(Mathf.Abs(transform.position.x - pc.gameObject.transform.position.x)<= stopDistance)
             {
                 pc.Die();

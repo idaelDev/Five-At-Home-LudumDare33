@@ -22,18 +22,6 @@ public class Web : MonoBehaviour {
     public int lvl = 0;
     public bool isFeed = false;
 
-    AudioSource audio;
-
-	// Use this for initialization
-	void Start () {
-        audio = GetComponent<AudioSource>();
-	}
-	
-	// Update is called once per frame
-	void Update () 
-    {
-	}
-
     public void MakeWeb()
     {
 
@@ -53,19 +41,19 @@ public class Web : MonoBehaviour {
 
     public void Eat()
     {
-        audio.Play();
         isFeed = false;
-        DestroyWeb();
+        for (int i = 0; i < webShowFood.Length; i++)
+        {
+            webShowFood[i].HideAllBugs();
+        }
+        StartCoroutine(FeedWebCoroutine(lvl-1));
+        //DestroyWeb();
     }
 
     public void DestroyWeb()
     {
         lvl--;
         StopAllCoroutines();
-        for (int i = 0; i < webShowFood.Length; i++)
-        {
-            webShowFood[i].HideAllBugs();
-        }
 
         if (lvl > 0)
         {
