@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SpiderEat : MonoBehaviour {
 
@@ -7,16 +8,22 @@ public class SpiderEat : MonoBehaviour {
     public int[] foodValue;
     public int currentFoodValue = 0;
     public float eatTime = 0.5f;
-
+    public Slider slider;
+    public Text levelText;
     private SpiderScale sc;
     private PlayerControl pc;
     SoundSpiderManager audio;
 
+    public string[] lvlMessages;
+
 	// Use this for initialization
+
 	void Start () {
         sc = GetComponent<SpiderScale>();
         pc = GetComponent<PlayerControl>();
         audio = GetComponent<SoundSpiderManager>();
+        slider.minValue = currentFoodValue;
+        slider.maxValue = valueToNextLevel[sc.level];
 	}
 	
     public void Eat(int lvl)
@@ -25,6 +32,8 @@ public class SpiderEat : MonoBehaviour {
         audio.PlayEat();
         StartCoroutine(EatCoroutine());
         currentFoodValue += foodValue[lvl];
+        slider.value = currentFoodValue;
+
         if(currentFoodValue >= valueToNextLevel[sc.level])
         {
             LevelUp();
@@ -40,6 +49,9 @@ public class SpiderEat : MonoBehaviour {
 
     void LevelUp()
     {
+        slider.minValue = currentFoodValue;
+        slider.maxValue = valueToNextLevel[sc.level + 1];
+        levelText.text = lvlMessages[sc.level+1];
         sc.LevelUp();
     }
 }

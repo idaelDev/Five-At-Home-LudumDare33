@@ -14,6 +14,7 @@ public class SpiderScale : MonoBehaviour {
 
     PlayerControl pc;
 
+
     void Start()
     {
         pc = GetComponent<PlayerControl>();

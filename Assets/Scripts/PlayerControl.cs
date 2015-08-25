@@ -35,6 +35,7 @@ public class PlayerControl : MonoBehaviour {
 
     bool isAttacking = false;
     public bool isGIant = false;
+    public bool isMini = true;
 
     public Text tutoText;
 
@@ -43,6 +44,9 @@ public class PlayerControl : MonoBehaviour {
     const string down = "S";
     const string left = "A";
     const string action = "Q";
+
+    int nbHuman = 4;
+    GameObject[] humans;
 
 	// Use this for initialization
 	void Start () {
@@ -53,6 +57,7 @@ public class PlayerControl : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         Web.MakingWebEvent += SetCanMove;
         tutoText.text = "";
+        humans = GameObject.FindGameObjectsWithTag("Human");
 	}
 	
     public void UpSpider()
@@ -70,6 +75,7 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (spiderPhase == 2)
         {
+            isMini = false;
             currentSpider = SpiderV2;
             SpiderV1.SetActive(false);
             SpiderV3.SetActive(false);
@@ -79,7 +85,9 @@ public class PlayerControl : MonoBehaviour {
             currentSpider = SpiderV3;
             SpiderV1.SetActive(false);
             SpiderV2.SetActive(false);
-            tutoText.transform.Translate(0, 1, 0);
+            Vector3 l = tutoText.transform.localPosition;
+            l.y += 0.25f;
+            tutoText.transform.localPosition = l;
         }
         currentSpider.SetActive(true);
         anim = currentSpider.GetComponent<Animator>();
@@ -114,10 +122,10 @@ public class PlayerControl : MonoBehaviour {
 
         if (canMove)
         {
-            if(isGIant && Input.GetButtonDown("Action"))
-            {
-                Attack();
-            }
+            //if(isGIant && Input.GetButtonDown("Action"))
+            //{
+            //    Attack();
+            //}
             Move(h, v);
         }
         else
@@ -133,21 +141,41 @@ public class PlayerControl : MonoBehaviour {
 
     void Update()
     {
+        if (canMove)
+        {
+            if (isGIant && Input.GetButtonDown("Action"))
+            {
+                Attack();
+            }
+        }
         if(webCreation.onWeb)
         {
             tutoText.text = action;
         }
-        //else
-        //{
-        //    tutoText.text = "";
-        //}
     }
 
     void Attack()
     {
+        audio.PlayEat();
         anim.SetTrigger("Eat");
         canMove = false;
         StartCoroutine(WaitAttackCoroutine());
+        for (int i = 0; i < humans.Length; i++)
+        {
+            if(Vector3.Distance(transform.position, humans[i].transform.position) <= 5)
+            {
+                humans[i].GetComponent<Enemy>().Die();
+                nbHuman--;
+                if(nbHuman <= 0)
+                    StartCoroutine(ToEndCoroutine());
+            }
+        }
+    }
+
+    IEnumerator ToEndCoroutine()
+    {
+        yield return new WaitForSeconds(3);
+        Application.LoadLevel("End");
     }
 
     IEnumerator WaitAttackCoroutine()
@@ -158,7 +186,9 @@ public class PlayerControl : MonoBehaviour {
 
     void Move(float h, float v)
     {
-        tutoText.text = "";
+        if (!isGIant)
+            tutoText.text = "";
+
         switch (currentOrientation)
         {
             case HEAD_ORIENTATION.UP:

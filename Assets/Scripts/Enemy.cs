@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour {
     PlayerControl pc;
 
     SoundEnemySound audio;
+    bool isDead = false;
 
 	// Use this for initialization
 	void Start () 
@@ -49,7 +50,7 @@ public class Enemy : MonoBehaviour {
             case EnemyState.ATTACK:
                 AttackMovement();
                 break;
-            case EnemyState.PANIC:
+            case EnemyState.DEAD:
                 break;
             default:
                 break;
@@ -88,7 +89,7 @@ public class Enemy : MonoBehaviour {
 
     void Attack()
     {
-        if(evf.seeSpider)
+        if(evf.seeSpider && !pc.isGIant)
         {
             Debug.Log(Mathf.Abs(transform.position.x - pc.gameObject.transform.position.x));
             if(Mathf.Abs(transform.position.x - pc.gameObject.transform.position.x)<= stopDistance)
@@ -117,11 +118,25 @@ public class Enemy : MonoBehaviour {
         s.x *= -1;
         transform.localScale = s;
     }
+
+    public void Die()
+    {
+        currentState = EnemyState.DEAD;
+        isDead = true;
+        audio.PlayDie();
+        StartCoroutine(DieCoroutine());
+    }
+
+    IEnumerator DieCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
+    }
 }
 
 public enum EnemyState
 {
     NORMAL,
     ATTACK,
-    PANIC
+    DEAD
 }

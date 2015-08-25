@@ -13,7 +13,7 @@ public class EnemyViewField : MonoBehaviour {
     {
         if(other.gameObject.tag == "Player")
         {
-            if(!other.gameObject.GetComponent<SpiderHidding>().isHidding)
+            if(!other.gameObject.GetComponent<SpiderHidding>().isHidding && !other.gameObject.GetComponent<PlayerControl>().isMini)
             {
                 if (CheckOcclusion(other.gameObject))
                 {
